@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('customers.show') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark class="block h-9 w-auto"></x-jet-application-mark>
                     </a>
                 </div>
 
@@ -14,6 +14,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('customers.show') }}" :active="request()->routeIs('customers.show')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('payments.show') }}" :active="request()->routeIs('payments.show')">
+                        {{ __('Payments') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -61,7 +66,7 @@
                                     </div>
 
                                     @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
+                                        <x-jet-switchable-team :team="$team"></x-jet-switchable-team>
                                     @endforeach
                                 </div>
                             </x-slot>

@@ -33,18 +33,21 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return \view('customers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        //
+        $customer = Customer::create($request->all());
+        $customer->save();
+
+        return \redirect()->route('customers.show');
     }
 
     /**

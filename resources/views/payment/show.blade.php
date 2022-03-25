@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between">
             <h2 class="font-semibold text-base text-gray-800 leading-tight">
-                {{ __('Customer Management') }}
+                {{ __('Payment Management') }}
             </h2>
 
-            <a href="{{ route('customers.create') }}" class="border-b-2 font-semibold text-base text-gray-800 leading-tight">{{ __('Create customer') }}
+            <a href="{{ route('payments.create') }}" class="border-b-2 font-semibold text-base text-gray-800 leading-tight">{{ __('Create payment') }}
             </a>
         </div>
     </x-slot>
@@ -24,27 +24,19 @@
                                         </th>
                                         <th
                                             class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            CUSTOMER NAME
+                                            CUSTOMER EMAIL
                                         </th>
                                         <th
                                             class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            EMAIL
+                                            AMOUNT
                                         </th>
                                         <th
                                             class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            LIFETIME REVENUE
-                                        </th>
-                                        <th
-                                            class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            TOTAL TRANSACTIONS
+                                            DATE
                                         </th>
                                         <th
                                             class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             created at
-                                        </th>
-                                        <th
-                                            class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            Action
                                         </th>
                                         <th
                                             class="px-2 py-3 bg-gray-50 whitespace-no-wrap text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -127,7 +119,7 @@
             var table = $('table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('customers.show') }}",
+                ajax: "{{ route('payments.show') }}",
                 pageLength: 20,
                 columns: [
                     {
@@ -136,36 +128,24 @@
                         className: 'bg-gray-100'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'customer_email',
+                        name: 'customer_email',
                     },
                     {
-                        data: 'email',
-                        name: 'email'
+                        data: 'amount',
+                        name: 'amount'
                     },
                     {
-                        data: 'lifetime_revenue',
-                        name: 'lifetime_revenue'
+                        data: 'date',
+                        name: 'date'
                     },
                     {
-                        data: 'total_transactions',
-                        name: 'total_transactions'
-                    },
-                    {
-
                         data: 'created_at',
                         name: 'created_at'
                     },
-
                     {
-                        data: 'edit',
-                        name: 'edit',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'delete',
-                        name: 'delete',
+                        data: 'action',
+                        name: 'action',
                         orderable: false,
                         searchable: false
                     },
