@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use App\Models\Payment;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,7 +39,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,9 +85,9 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Customer $customer
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $customer): \Illuminate\Contracts\View\View|Factory|Application
     {
         return \view('customers.edit', compact('customer'));
     }
@@ -92,13 +95,19 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CustomerRequest $request
      * @param Customer $customer
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerRequest $request, Customer $customer): RedirectResponse
     {
-        //
+        $customer->payments()->update(['customer_email' => $request->email]);
+        $customer->email = $request->email;
+        $customer->name = $request->name;
+        $customer->push();
+
+        return redirect()->route('customers.show')
+            ->with('success', 'Customer updated successfully');
     }
 
     /**

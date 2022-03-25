@@ -4,6 +4,7 @@
             <h2 class="font-semibold text-base text-gray-800 leading-tight">
                 {{ __('Customer Management') }}
             </h2>
+            <a href="{{ route('customer.create') }}"></a>
         </div>
     </x-slot>
     <div class="py-12">

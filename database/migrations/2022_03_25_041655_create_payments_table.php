@@ -19,8 +19,6 @@ return new class extends Migration
             $table->double('amount');
             $table->date('date');
             $table->timestamps();
-
-            $table->foreign('customer_email')->references('email')->on('customers')->cascadeOnDelete();
         });
     }
 
