@@ -10,6 +10,10 @@
         </div>
     </x-slot>
     <div class="py-12">
+        <div class="w-1/3 ml-4 pl-4 ">
+            @livewire('import-payments')
+        </div>
+
         <div class="min-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="flex flex-col">
