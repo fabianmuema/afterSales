@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/dashboard', [CustomerController::class, 'show'])->name('customers.show');
+    Route::get('/', [CustomerController::class, 'show'])->name('customers.show');
     Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
     Route::post('/customers/store', [CustomerController::class, 'store'])->name('customers.store');
     Route::get('/customers/edit/{customer}', [CustomerController::class, 'edit'])->name('customers.edit');
