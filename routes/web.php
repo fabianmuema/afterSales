@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/dashboard', [CustomerController::class, 'show'])->name('customers.show');
+    Route::get('/customers/edit/{customer}', [CustomerController::class, 'edit'])->name('customers.edit');
+    Route::get('/customers/delete/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::post('/customers/update/{customer}', [CustomerController::class, 'update'])->name('customers.update');
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
